@@ -4,9 +4,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Character(models.Model):
     """
-    Model for a How to be a Hero Pen & Paper Character
+    Model for a How to be a Hero Pen & Paper Character.
     """
+
     # choices
+    KIND_CHOICES = [
+        ('PC', 'player character'),
+        ('NPC', 'non-player character')
+    ]
     GENDER_CHOICES = [
         ('M', 'male'),
         ('F', 'female'),
@@ -24,22 +29,122 @@ class Character(models.Model):
     name = models.CharField(max_length=100)
     age = models.PositiveSmallIntegerField()
     gender = models.CharField(max_length=2, choices=GENDER_CHOICES)
-    shape = models.CharField(max_length=50)
+    appearance = models.CharField(max_length=500)
     religion = models.CharField(max_length=100)
     profession = models.CharField(max_length=100)
     marital_status = models.CharField(max_length=2, choices=MARITAL_STATUS_CHOICES)
+    notes = models.TextField(max_length=2000)
     portrait = models.ImageField()
 
     # game relevant fields
-    talent_act, talent_knowledge, talent_social = models.IntegerField(
+    kind = models.CharField(
+        max_length=2,
+        choices=KIND_CHOICES,
+        default='PC',
+        editable=False
+    )
+    talent_act = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
         editable=False
     )
-    life_points = models.IntegerField(
+    talent_knowledge = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
         editable=False
     )
-    rescue_points = models.IntegerField(
+    talent_social = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        editable=False
+    )
+    life_points = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        editable=False
+    )
+    rescue_points = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(10)],
         editable=False
     )
+    money = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    """
+    Model for a How to be a Hero Pen & Paper Skill.
+    A Character can have n Skills.
+    """
+
+    # choices
+    TALENT_CHOICE = [
+        ('act', 'act'),
+        ('knowledge', 'knowledge'),
+        ('social', 'social')
+    ]
+
+    # fields
+    character = models.ForeignKey(Character, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    talent = models.CharField(max_length=2, choices=TALENT_CHOICE)
+    value = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        editable=False
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class Bin(models.Model):
+    """
+    Model for a Bin which serves as container for Items.
+    """
+
+    # fields
+    capacity = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        editable=False
+    )
+    capacity_validation = models.BooleanField(default=False, editable=False)
+
+
+class Inventory(Bin):
+    """
+    Model for a How to be a Hero Pen & Paper Inventory. Inherits Bin.
+    An Inventory can be associated to one Character only.
+    """
+
+    # fields
+    character = models.OneToOneField(
+        Character,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+
+
+class Item(models.Model):
+    """
+    Model for a How to be a Hero Pen & Paper Item.
+    A Bin can contain n Items.
+    """
+
+    # choices
+    KIND_CHOICES = [
+        ('gp', 'general purpose'),
+        ('w', 'weapon'),
+        ('a', 'ammunition'),
+        ('p', 'protection')
+    ]
+
+    # fields
+    bin = models.ForeignKey(Bin, on_delete=models.CASCADE)
+    kind = models.CharField(max_length=2, choices=KIND_CHOICES)
+    name = models.CharField(max_length=50)
+    amount = models.PositiveSmallIntegerField()
+    value = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)]
+    )
+    price = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
