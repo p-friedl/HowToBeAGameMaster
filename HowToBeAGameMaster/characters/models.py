@@ -63,7 +63,7 @@ class Character(models.Model):
         validators=[MinValueValidator(0), MaxValueValidator(10)],
         editable=False
     )
-    money = models.PositiveIntegerField()
+    money = models.PositiveIntegerField(default=0, editable=False)
 
     def __str__(self):
         return self.name
@@ -144,7 +144,7 @@ class Item(models.Model):
     value = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)]
     )
-    price = models.PositiveIntegerField()
+    price = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
