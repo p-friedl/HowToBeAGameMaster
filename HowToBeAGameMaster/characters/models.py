@@ -28,42 +28,46 @@ class Character(models.Model):
     # character relevant fields
     name = models.CharField(max_length=100)
     age = models.PositiveSmallIntegerField()
-    gender = models.CharField(max_length=2, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     appearance = models.CharField(max_length=500)
     religion = models.CharField(max_length=100)
     profession = models.CharField(max_length=100)
-    marital_status = models.CharField(max_length=2, choices=MARITAL_STATUS_CHOICES)
-    notes = models.TextField(max_length=2000)
-    portrait = models.ImageField()
+    marital_status = models.CharField(max_length=15, choices=MARITAL_STATUS_CHOICES)
+    player_notes = models.TextField(max_length=2000, blank=True, default='')
+    game_master_notes = models.TextField(max_length=2000, blank=True, default='')
+    portrait = models.ImageField(blank=True)
 
     # game relevant fields
     kind = models.CharField(
-        max_length=2,
+        max_length=3,
         choices=KIND_CHOICES,
-        default='PC',
-        editable=False
     )
     talent_act = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
+        default=0,
         editable=False
     )
     talent_knowledge = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
+        default=0,
         editable=False
     )
     talent_social = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
+        default=0,
         editable=False
     )
     life_points = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
+        default=100,
         editable=False
     )
     rescue_points = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(10)],
+        default=0,
         editable=False
     )
-    money = models.PositiveIntegerField(default=0, editable=False)
+    money = models.PositiveIntegerField(blank=True, default=0)
 
     def __str__(self):
         return self.name
@@ -85,10 +89,9 @@ class Skill(models.Model):
     # fields
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    talent = models.CharField(max_length=2, choices=TALENT_CHOICE)
+    talent = models.CharField(max_length=10, choices=TALENT_CHOICE)
     value = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
-        editable=False
     )
 
     def __str__(self):
@@ -103,9 +106,9 @@ class Bin(models.Model):
     # fields
     capacity = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)],
-        editable=False
+        default=20
     )
-    capacity_validation = models.BooleanField(default=False, editable=False)
+    capacity_validation = models.BooleanField(default=False)
 
 
 class Inventory(Bin):
@@ -120,6 +123,9 @@ class Inventory(Bin):
         on_delete=models.CASCADE,
         primary_key=True
     )
+
+    def __str__(self):
+        return self.character.name
 
 
 class Item(models.Model):
