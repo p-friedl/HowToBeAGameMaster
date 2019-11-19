@@ -12,18 +12,20 @@ class SkillInline(admin.TabularInline):
 
 class InventoryInline(admin.StackedInline):
     model = Inventory
-    verbose_name_plural = 'Inventory'
     max_num = 1
     min_num = 1
     can_delete = False
 
 
 class CharacterAdmin(admin.ModelAdmin):
-    list_display = ('name', 'kind', 'talent_act', 'talent_knowledge', 'talent_social')
-    list_filter = ('kind', )
+    list_display = ('name', 'kind', 'creator')
+    list_filter = ('kind', 'creator')
     fieldsets = (
+        ('GENERAL', {
+            'fields': ('creator', 'kind')
+        }),
         ('CHARACTER INFORMATION', {
-            'fields': ('kind', 'portrait', 'name', 'gender', 'age', 'appearance',
+            'fields': ('portrait', 'name', 'gender', 'age', 'appearance',
                        'profession', 'marital_status', 'religion')
         }),
         ('NOTES', {
