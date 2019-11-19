@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+from items.models import Bin
+
 
 class Character(models.Model):
     """
@@ -24,6 +26,8 @@ class Character(models.Model):
         ('divorced', 'divorced'),
         ('widowed', 'widowed')
     ]
+
+    creator = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     # character relevant fields
     name = models.CharField(max_length=100)
@@ -98,24 +102,14 @@ class Skill(models.Model):
         return self.name
 
 
-class Bin(models.Model):
-    """
-    Model for a Bin which serves as container for Items.
-    """
-
-    # fields
-    capacity = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(100)],
-        default=20
-    )
-    capacity_validation = models.BooleanField(default=False)
-
-
 class Inventory(Bin):
     """
     Model for a How to be a Hero Pen & Paper Inventory. Inherits Bin.
     An Inventory can be associated to one Character only.
     """
+
+    class Meta:
+        verbose_name_plural = 'Inventories'
 
     # fields
     character = models.OneToOneField(
@@ -128,29 +122,4 @@ class Inventory(Bin):
         return self.character.name
 
 
-class Item(models.Model):
-    """
-    Model for a How to be a Hero Pen & Paper Item.
-    A Bin can contain n Items.
-    """
 
-    # choices
-    KIND_CHOICES = [
-        ('gp', 'general purpose'),
-        ('w', 'weapon'),
-        ('a', 'ammunition'),
-        ('p', 'protection')
-    ]
-
-    # fields
-    bin = models.ForeignKey(Bin, on_delete=models.CASCADE)
-    kind = models.CharField(max_length=2, choices=KIND_CHOICES)
-    name = models.CharField(max_length=50)
-    amount = models.PositiveSmallIntegerField()
-    value = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(100)]
-    )
-    price = models.PositiveIntegerField(default=0)
-
-    def __str__(self):
-        return self.name
