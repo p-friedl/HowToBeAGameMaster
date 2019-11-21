@@ -31,11 +31,11 @@ class Character(models.Model):
 
     # character relevant fields
     name = models.CharField(max_length=100)
-    age = models.PositiveSmallIntegerField()
+    age = models.PositiveSmallIntegerField(default=0)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    appearance = models.CharField(max_length=500)
-    religion = models.CharField(max_length=100)
-    profession = models.CharField(max_length=100)
+    appearance = models.CharField(max_length=500, default='')
+    religion = models.CharField(max_length=100, default='')
+    profession = models.CharField(max_length=100, default='')
     marital_status = models.CharField(max_length=15, choices=MARITAL_STATUS_CHOICES)
     player_notes = models.TextField(max_length=2000, blank=True, default='')
     game_master_notes = models.TextField(max_length=2000, blank=True, default='')
@@ -75,6 +75,24 @@ class Character(models.Model):
 
     def __str__(self):
         return self.name
+
+    def calculate_talents(self):
+        character = Character.objects.get(pk=self.pk)
+        act, knowledge, social = 0, 0, 0
+        for skill in character.skill_set.all():
+            if skill.talent == 'act':
+                act += skill.value
+            elif skill.talent == 'knowledge':
+                knowledge += skill.value
+            else:
+                social += skill.value
+        self.talent_act = round(act / 10)
+        self.talent_knowledge = round(knowledge / 10)
+        self.talent_social = round(social / 10)
+        self.save()
+        # TODO add markup of talent on each Skill (not higher than 100!)
+
+        # TODO add calculation of rescue points
 
 
 class Skill(models.Model):
