@@ -77,8 +77,16 @@ class Character(models.Model):
         return self.name
 
     def calculate_talents(self):
+        """
+        Method to calculate the three main talents: act, knowledge, social.
+        Calculation is based on the Skill values related to talent:
+        talent = summed Skill values related to the talent / 10
+        Afterwards applies the talent value as a markup to the related Skills.
+        Returns Diffs based on markups exceeding the Skill value limit of 100.
+        """
         character = Character.objects.get(pk=self.pk)
         act, knowledge, social = 0, 0, 0
+        # calc talent - skill value distribution
         for skill in character.skill_set.all():
             if skill.talent == 'act':
                 act += skill.value
@@ -86,13 +94,33 @@ class Character(models.Model):
                 knowledge += skill.value
             else:
                 social += skill.value
+        # assign talent values
         self.talent_act = round(act / 10)
         self.talent_knowledge = round(knowledge / 10)
         self.talent_social = round(social / 10)
         self.save()
-        # TODO add markup of talent on each Skill (not higher than 100!)
 
-        # TODO add calculation of rescue points
+        # talent based skill markup
+        diff_act, diff_knowledge, diff_social = 0, 0, 0
+        for skill in character.skill_set.all():
+            if skill.talent == 'act':
+                diff_act += skill.add_talent_markup(self.talent_act)
+            elif skill.talent == 'knowledge':
+                diff_knowledge += skill.add_talent_markup(self.talent_knowledge)
+            else:
+                diff_social += skill.add_talent_markup(self.talent_social)
+        return diff_act, diff_knowledge, diff_social
+
+    def calculate_rescue_points(self):
+        """
+        Method to calculate the rescue_points.
+        Calculation is based on the three main talent's values:
+        rescue_points = (talent1 / 10) + (talent2) / 10 + (talent3) / 10
+        """
+        self.rescue_points = round(self.talent_act / 10) + \
+                             round(self.talent_knowledge / 10) + \
+                             round(self.talent_social / 10)
+        self.save()
 
 
 class Skill(models.Model):
@@ -119,6 +147,20 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
+    def add_talent_markup(self, markup):
+        """
+        Method to add the talent bonus markup for a skill.
+        Called by the Character model's calculate_talents method.
+        Returns a diff in case the markup exceeds the skill value limit of 100.
+        """
+        self.value += markup
+        diff = 0
+        if self.value > 100:
+            diff = self.value - 100
+            self.value = 100
+        self.save()
+        return diff
+
 
 class Inventory(Bin):
     """
@@ -138,6 +180,3 @@ class Inventory(Bin):
 
     def __str__(self):
         return self.character.name
-
-
-
