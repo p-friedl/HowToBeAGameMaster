@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HowToBeAGameMaster Character Creation</title>
+</head>
+<body>
+    <h1>Create a new Character</h1>
+    <form action="{% url 'characters:create' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+    {% if text %}<p><strong>{{ text }}</strong></p>{% endif %}
+</body>
+</html>
