@@ -141,8 +141,9 @@ class Skill(models.Model):
     name = models.CharField(max_length=50)
     talent = models.CharField(max_length=10, choices=TALENT_CHOICE)
     value = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        validators=[MinValueValidator(1), MaxValueValidator(100)],
     )
+    # TODO Probably better to add an own field for markup and refactor calculate_talents and add_talent_markup
 
     def __str__(self):
         return self.name
