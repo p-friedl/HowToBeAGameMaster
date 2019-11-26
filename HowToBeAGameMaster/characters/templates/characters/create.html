@@ -8,9 +8,15 @@
     <h1>Create a new Character</h1>
     <form action="{% url 'characters:create' %}" method="post">
         {% csrf_token %}
-        {{ form }}
+        <fieldset>
+        {{ char_form }}
+        </fieldset>
+        <fieldset>
+        {{ skill_form }}
+        </fieldset>
         <input type="submit" value="Submit">
     </form>
     {% if text %}<p><strong>{{ text }}</strong></p>{% endif %}
+</script>
 </body>
 </html>
