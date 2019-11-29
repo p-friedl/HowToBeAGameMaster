@@ -27,11 +27,12 @@ class Character(models.Model):
         ('widowed', 'widowed')
     ]
 
-    creator = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    # TODO: reimplement creator relation
+    # creator = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     # character relevant fields
     name = models.CharField(max_length=100)
-    age = models.PositiveSmallIntegerField(default=0)
+    age = models.PositiveSmallIntegerField(validators=[MinValueValidator(1)], default=1)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     appearance = models.CharField(max_length=500, default='')
     religion = models.CharField(max_length=100, default='')
@@ -141,7 +142,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=50)
     talent = models.CharField(max_length=10, choices=TALENT_CHOICE)
     value = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(100)],
+        validators=[MinValueValidator(1), MaxValueValidator(100)]
     )
     # TODO Probably better to add an own field for markup and refactor calculate_talents and add_talent_markup
 
