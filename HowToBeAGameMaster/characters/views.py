@@ -16,6 +16,7 @@ class Create(View):
         char_form = CharacterForm(request.POST)
 
         if char_form.is_valid():
+            # TODO: implement authentication to be able to reimplement Character creator relation
             char_form.save()
             return render(request, 'characters/create.html', {
                 'text': request.POST['name']
