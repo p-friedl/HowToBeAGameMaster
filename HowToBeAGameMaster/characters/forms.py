@@ -101,5 +101,11 @@ class CharacterForm(forms.ModelForm):
                 value=self.cleaned_data['skills']['skill_values'][i]
             )
 
+    def get_skill_fields(self):
+        for skill_field in self.fields:
+            if skill_field.startswith('skill_talent_') or skill_field.startswith('skill_name_') \
+                   or skill_field.startswith('skill_value_'):
+                yield self[skill_field]
+
 
 
