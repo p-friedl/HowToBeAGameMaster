@@ -6,15 +6,14 @@
 </head>
 <body>
     <h1>Create a new Character</h1>
-    <form action="{% url 'characters:create' %}" method="post">
+    <form action="{% url 'characters:createnew' %}" method="post">
         <formset>
             {% csrf_token %}
             {{ char_form }}
         </formset>
         <formset>
-            {% for skill_field in char_form.get_skill_fields %}
-                {{ skill_field }}
-            {% endfor %}
+            {{ skill_formset.management_form }}
+            {{ skill_formset }}
         </formset>
         <input type="submit" value="Submit">
     </form>

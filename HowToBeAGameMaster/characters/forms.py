@@ -1,17 +1,17 @@
-from django import forms
+from django.forms import modelform_factory, inlineformset_factory
 
 from .models import Character, Skill
 
-
+"""
 class CharacterForm(forms.ModelForm):
-    """
-    Class representing a character create form with dynamic skills
-    Inherits forms.ModelForm
-    """
+    
+#Class representing a character create form with dynamic skills
+    #Inherits forms.ModelForm
+
     class Meta:
-        """
-        Meta Class to define form model and fields
-        """
+
+Meta Class to define form model and fields
+
         model = Character
         fields = ['kind', 'portrait', 'name', 'age', 'gender', 'appearance',
                   'religion', 'profession', 'marital_status', 'player_notes']
@@ -40,7 +40,7 @@ class CharacterForm(forms.ModelForm):
                 self.initial[skill_value_field_name] = ""
                 # create extra blank fields
                 # TODO: evaluate if the below lines will be needed
-                """
+                
                 skill_talent_field_name = 'skill_talent_{}'.format(i + 1)
                 skill_name_field_name = 'skill_name_{}'.format(i + 1)
                 skill_value_field_name = 'skill_value_{}'.format(i + 1)
@@ -48,7 +48,7 @@ class CharacterForm(forms.ModelForm):
                                                                        required=True)
                 self.fields[skill_name_field_name] = forms.CharField(max_length=50, required=True)
                 self.fields[skill_value_field_name] = forms.IntegerField(min_value=1, max_value=100, required=True)
-                """
+                
 
     def clean(self):
         skills = {
@@ -107,5 +107,10 @@ class CharacterForm(forms.ModelForm):
                    or skill_field.startswith('skill_value_'):
                 yield self[skill_field]
 
+"""
 
+CharacterForm = modelform_factory(Character, fields=('kind', 'portrait', 'name', 'age', 'gender',
+                                                     'appearance', 'religion', 'profession', 'marital_status',
+                                                     'player_notes'))
 
+SkillFormSet = inlineformset_factory(Character, Skill, fields=('talent', 'name', 'value'), extra=3)

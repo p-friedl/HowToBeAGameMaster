@@ -1,15 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import View
-from django.forms import modelformset_factory, inlineformset_factory
 
 from .models import Character, Skill
-from .forms import CharacterForm
+from .forms import CharacterForm, SkillFormSet
 
-
+"""
 class Create(View):
     """
-    Class representing the character create view
-    """
+# Class representing the character create view
+"""
     def get(self, request):
         char_form = CharacterForm
         return render(request, 'characters/create.html', {'char_form': char_form})
@@ -23,26 +22,25 @@ class Create(View):
             return render(request, 'characters/create.html', {
                 'text': request.POST['name']
             })
-
+"""
 
 class Createnew(View):
     """
     Class representing the character create view
     """
-    CharacterFormSet = modelformset_factory(Character, fields=('kind', 'portrait', 'name', 'age', 'gender',
-                                                               'appearance', 'religion', 'profession', 'marital_status',
-                                                               'player_notes'))
-    SkillFormSet = inlineformset_factory(Character, Skill)
 
-    def get(self, request, CharacterFormSet=CharacterFormSet):
-        char_form = CharacterFormSet()
-        return render(request, 'characters/create_new.html', {'char_form': char_form})
+    def get(self, request):
+        char_form = CharacterForm()
+        skill_formset = SkillFormSet()
+        return render(request, 'characters/create_new.html', {'char_form': char_form, 'skill_formset': skill_formset})
 
-    def post(self, request, CharacterFormSet=CharacterFormSet):
-        char_form = CharacterFormSet(request.POST)
-
-        if char_form.is_valid():
+    def post(self, request):
+        char_form = CharacterForm(request.POST)
+        skill_formset = SkillFormSet(request.POST)
+        if char_form.is_valid() and skill_formset.is_valid():
             char_form.save()
-            return render(request, 'characters/create.html', {
+            skill_formset.instance = char_form.instance
+            skill_formset.save()
+            return render(request, 'characters/create_new.html', {
                 'text': request.POST['name']
             })
