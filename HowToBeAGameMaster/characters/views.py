@@ -23,7 +23,7 @@ class Create(View):
                 'text': request.POST['name']
             })
 """
-
+# TODO: refactor based on successful formset experiment
 class Createnew(View):
     """
     Class representing the character create view
