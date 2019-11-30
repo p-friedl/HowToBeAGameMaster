@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3665c92d-0ef5-4c0f-b137-a61d69a8b502" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="97" selection-start-line="18" selection-start-column="97" selection-end-line="18" selection-end-column="97" />
+            <state relative-caret-position="660">
+              <caret line="44" column="28" lean-forward="true" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -25,10 +27,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create_new.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+            <state relative-caret-position="210">
+              <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -36,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+            <state relative-caret-position="555">
+              <caret line="37" column="59" lean-forward="true" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -60,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1112">
-              <caret line="82" column="33" lean-forward="true" selection-start-line="82" selection-start-column="33" selection-end-line="82" selection-end-column="33" />
+            <state relative-caret-position="240">
+              <caret line="16" column="76" selection-start-line="15" selection-start-column="18" selection-end-line="16" selection-end-column="76" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -111,18 +118,19 @@
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/tests.py" />
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/HowToBeAGameMaster/urls.py" />
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/urls.py" />
-        <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html" />
-        <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py" />
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/admin.py" />
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/models.py" />
+        <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py" />
+        <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html" />
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="824" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1286" />
+    <option name="y" value="24" />
+    <option name="width" value="1903" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -160,6 +168,14 @@
               <item name="HowToBeAGameMaster" type="b2602c69:ProjectViewProjectNode" />
               <item name="HowToBeAGameMaster" type="462c0819:PsiDirectoryNode" />
               <item name="HowToBeAGameMaster" type="462c0819:PsiDirectoryNode" />
+              <item name="characters" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="characters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HowToBeAGameMaster" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HowToBeAGameMaster" type="462c0819:PsiDirectoryNode" />
+              <item name="HowToBeAGameMaster" type="462c0819:PsiDirectoryNode" />
               <item name="HowToBeAGameMaster" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -174,6 +190,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters" />
       <recent name="$PROJECT_DIR$/HowToBeAGameMaster" />
     </key>
   </component>
@@ -212,15 +229,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="824" extended-state="0" />
+    <frame x="1280" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23467231" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17535545" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" weight="0.329235" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.22814208" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.17305699" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -312,33 +329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1112">
-          <caret line="82" column="33" lean-forward="true" selection-start-line="82" selection-start-column="33" selection-end-line="82" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -349,10 +339,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="76" selection-start-line="15" selection-start-column="18" selection-end-line="16" selection-end-column="76" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="59" lean-forward="true" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create_new.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="97" selection-start-line="18" selection-start-column="97" selection-end-line="18" selection-end-column="97" />
+        <state relative-caret-position="660">
+          <caret line="44" column="28" lean-forward="true" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
