@@ -7,15 +7,14 @@
 <body>
     <h1>Create a new Character</h1>
     <form action="{% url 'characters:create' %}" method="post">
-        <formset>
+        <fieldset>
             {% csrf_token %}
             {{ char_form }}
-        </formset>
-        <formset>
-            {% for skill_field in char_form.get_skill_fields %}
-                {{ skill_field }}
-            {% endfor %}
-        </formset>
+        </fieldset>
+        <fieldset>
+            {{ skill_formset.management_form }}
+            {{ skill_formset }}
+        </fieldset>
         <input type="submit" value="Submit">
     </form>
     {% if text %}<p><strong>{{ text }}</strong></p>{% endif %}
