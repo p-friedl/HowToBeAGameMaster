@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>HowToBeAGameMaster Character Creation</title>
+    {% load static %}
+    <script src="{% static 'characters/formcontrols.js' %}"></script>
 </head>
 <body>
     <h1>Create a new Character</h1>
     <form action="{% url 'characters:create' %}" method="post">
+        <div id="character">
         <fieldset>
             {% csrf_token %}
-            {{ char_form }}
-        </fieldset>
-        <fieldset>
+            {{ char_form.as_p }}
             {{ skill_formset.management_form }}
-            {{ skill_formset }}
         </fieldset>
+        </div>
+        <div id="skills">
+        {% for form in skill_formset %}
+        <fieldset class="skill">
+            {{ form.as_p }}
+        </fieldset>
+        {% endfor %}
+        </div>
         <input type="submit" value="Submit">
     </form>
+    <button id="addSkill" onclick="addSkill()">add Skill</button>
     {% if text %}<p><strong>{{ text }}</strong></p>{% endif %}
-</script>
 </body>
 </html>
