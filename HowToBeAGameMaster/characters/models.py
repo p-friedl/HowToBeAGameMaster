@@ -166,7 +166,7 @@ class Skill(models.Model):
 
 class Inventory(Bin):
     """
-    Model for a How to be a Hero Pen & Paper Inventory. Inherits Bin.
+    Model for a How to be a Hero Pen & Paper Character Inventory. Inherits Bin.
     An Inventory can be associated to one Character only.
     """
 
