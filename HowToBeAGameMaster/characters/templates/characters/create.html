@@ -5,6 +5,7 @@
     <title>HowToBeAGameMaster Character Creation</title>
     {% load static %}
     <script src="{% static 'characters/formcontrols.js' %}"></script>
+    <script>window.onload = eventListenerInit;</script>
 </head>
 <body>
     <h1>Create a new Character</h1>
@@ -23,8 +24,11 @@
         </fieldset>
         {% endfor %}
         </div>
-        <input type="submit" value="Submit">
+        <input id="characterSubmit" type="submit" value="Create Character" disabled="true">
     </form>
+    <div id="skill-values-validator">
+        <p id="skill-points-remaining">Remaining Skill Points: 400</p>
+    </div>
     <button id="addSkill" onclick="addSkill()">add Skill</button>
     {% if text %}<p><strong>{{ text }}</strong></p>{% endif %}
 </body>

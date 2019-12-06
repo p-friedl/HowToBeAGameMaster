@@ -1,3 +1,24 @@
+// function to add Event listeners for Skill value form field validation
+function addSkillValueValidationEvent(fieldId) {
+    let skillValueField = document.getElementById(`id_skill-${fieldId}-value`);
+    let skillDeleteFlag = document.getElementById(`id_skill-${fieldId}-DELETE`);
+    skillValueField.oninput = () => {
+        skillValuesValidation();
+    }
+    skillDeleteFlag.oninput = () => {
+        skillValuesValidation();
+    }
+}
+
+// function used during window.onload to initialize Event listeners on Skill value form fields for validation
+function eventListenerInit() {
+    // get TOTAL_FORMS element from Django management_form of Skill formset
+    let totalSkillForms = document.getElementById("id_skill-TOTAL_FORMS");
+    for (i = 0; i < totalSkillForms.value; i++) {
+        addSkillValueValidationEvent(i);
+    }
+}
+
 // function to dynamically add new skill fieldsets on Character forms
 function addSkill() {
             // get TOTAL_FORMS element from Django management_form of Skill formset
@@ -20,6 +41,8 @@ function addSkill() {
                 let skills = document.getElementById("skills");
                 // append clone to DIV
                 skills.appendChild(clone);
+                // add Skill Value Validation Event to newly created Skill Value field
+                addSkillValueValidationEvent(totalSkillForms.value);
                 // increase TOTAL_FORMS element to comply with Django logic
                 totalSkillForms.value = String(parseInt(totalSkillForms.value) + 1);
             } else {
@@ -28,3 +51,31 @@ function addSkill() {
                 button.setAttribute("disabled", true);
             }
         }
+
+// function to validate overall Skill values - should not exceed 400
+function skillValuesValidation() {
+    // get TOTAL_FORMS element from Django management_form of Skill formset
+    let totalSkillForms = document.getElementById("id_skill-TOTAL_FORMS");
+    let skillValues = [];
+    // iterate Skill value fields and collect valid values
+    for (i = 0; i < totalSkillForms.value; i++) {
+        let skillDeleteFlag = document.getElementById(`id_skill-${i}-DELETE`).checked;
+        let skillValue = document.getElementById(`id_skill-${i}-value`).value;
+        if (!skillDeleteFlag && skillValue !== "") {
+            skillValues.push(parseInt(skillValue));
+        }
+    }
+    // sum up Skill values
+    const valuesSum = skillValues.reduce((a, b) => a + b, 0);
+    // calculate remaining Skill Points
+    const remainingPoints = 400 - valuesSum;
+    let skillPointsRemaining = document.getElementById("skill-points-remaining");
+    // adapt Frontend message
+    skillPointsRemaining.innerHTML = `Remaining Skill Points: ${remainingPoints}`;
+    // handle Submit Button state
+    if (remainingPoints !== 0) {
+        document.getElementById("characterSubmit").disabled = true;
+    } else {
+        document.getElementById("characterSubmit").disabled = false;
+    }
+}
