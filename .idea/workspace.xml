@@ -18,20 +18,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/static/characters/formcontrols.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="71" column="82" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
+            <state relative-caret-position="352">
+              <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="210">
+              <caret line="14" column="114" lean-forward="true" selection-start-line="14" selection-start-column="114" selection-end-line="14" selection-end-column="114" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -96,9 +96,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/static/characters/formcontrols.js" />
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/templates/characters/create.html" />
         <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py" />
+        <option value="$PROJECT_DIR$/HowToBeAGameMaster/characters/static/characters/formcontrols.js" />
       </list>
     </option>
   </component>
@@ -282,13 +282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/static/characters/formcontrols.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="71" column="82" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -311,11 +304,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="210">
+          <caret line="14" column="114" lean-forward="true" selection-start-line="14" selection-start-column="114" selection-end-line="14" selection-end-column="114" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HowToBeAGameMaster/characters/static/characters/formcontrols.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
         </state>
       </provider>
     </entry>
