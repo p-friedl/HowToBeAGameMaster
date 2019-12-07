@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+from .fields import SkillValueField
 from items.models import Bin
 
 
@@ -141,7 +142,7 @@ class Skill(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     talent = models.CharField(max_length=10, choices=TALENT_CHOICE)
-    value = models.PositiveSmallIntegerField(
+    value = SkillValueField(
         validators=[MinValueValidator(1), MaxValueValidator(100)]
     )
     # TODO Probably better to add an own field for markup and refactor calculate_talents and add_talent_markup
