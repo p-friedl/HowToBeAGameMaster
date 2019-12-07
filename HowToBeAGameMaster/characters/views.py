@@ -25,4 +25,3 @@ class Create(View):
                 'text': request.POST['name']
             })
 
-# TODO investigate why form validation max 100 pro skill value field doesn't work in frontend
