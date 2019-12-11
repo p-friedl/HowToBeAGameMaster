@@ -18,11 +18,11 @@ class InventoryInline(admin.StackedInline):
 
 
 class CharacterAdmin(admin.ModelAdmin):
-    list_display = ('name', 'kind')
-    list_filter = ('kind', )
+    list_display = ('name', 'kind', 'creator')
+    list_filter = ('kind', 'creator')
     fieldsets = (
         ('GENERAL', {
-            'fields': ('kind', )
+            'fields': ('creator', 'kind')
         }),
         ('CHARACTER INFORMATION', {
             'fields': ('portrait', 'name', 'gender', 'age', 'appearance',
