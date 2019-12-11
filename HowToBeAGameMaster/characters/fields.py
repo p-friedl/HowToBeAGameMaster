@@ -1,11 +1,8 @@
-from django.db.models.fields import PositiveSmallIntegerField
+from django.db.models import PositiveSmallIntegerField
 
 
 class SkillValueField(PositiveSmallIntegerField):
     MAX_SKILL_VALUE = 100
-
-    def get_internal_type(self):
-        return "SkillValueField"
 
     def formfield(self, **kwargs):
         return super().formfield(**{
