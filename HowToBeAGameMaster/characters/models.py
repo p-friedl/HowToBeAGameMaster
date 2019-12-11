@@ -28,8 +28,7 @@ class Character(models.Model):
         ('widowed', 'widowed')
     ]
 
-    # TODO: reimplement creator relation
-    # creator = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    creator = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     # character relevant fields
     name = models.CharField(max_length=100)
@@ -117,7 +116,7 @@ class Character(models.Model):
         """
         Method to calculate the rescue_points.
         Calculation is based on the three main talent's values:
-        rescue_points = (talent1 / 10) + (talent2) / 10 + (talent3) / 10
+        rescue_points = (talent1 / 10) + (talent2 / 10) + (talent3 / 10)
         """
         self.rescue_points = round(self.talent_act / 10) + \
                              round(self.talent_knowledge / 10) + \
