@@ -7,7 +7,7 @@ class SkillInline(admin.TabularInline):
     model = Skill
     extra = 1
     min_num = 1
-    fields = ('talent', 'name', 'value')
+    fields = ('talent', 'name', 'value', 'include_talent_markup')
 
 
 class InventoryInline(admin.StackedInline):
@@ -18,8 +18,8 @@ class InventoryInline(admin.StackedInline):
 
 
 class CharacterAdmin(admin.ModelAdmin):
-    list_display = ('name', 'kind', 'creator')
-    list_filter = ('kind', 'creator')
+    list_display = ('name', 'ready_to_play', 'kind', 'creator')
+    list_filter = ('kind', 'ready_to_play', 'creator')
     fieldsets = (
         ('GENERAL', {
             'fields': ('creator', 'kind')
