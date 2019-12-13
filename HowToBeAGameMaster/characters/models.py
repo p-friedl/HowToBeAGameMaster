@@ -43,6 +43,7 @@ class Character(models.Model):
     portrait = models.ImageField(blank=True)
 
     # game relevant fields
+    ready_to_play = models.BooleanField(default=False, editable=False)
     kind = models.CharField(
         max_length=3,
         choices=KIND_CHOICES,
@@ -67,7 +68,17 @@ class Character(models.Model):
         default=100,
         editable=False
     )
-    rescue_points = models.PositiveSmallIntegerField(
+    rescue_points_act = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+        default=0,
+        editable=False
+    )
+    rescue_points_knowledge = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+        default=0,
+        editable=False
+    )
+    rescue_points_social = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(10)],
         default=0,
         editable=False
@@ -114,13 +125,13 @@ class Character(models.Model):
 
     def calculate_rescue_points(self):
         """
-        Method to calculate the rescue_points.
-        Calculation is based on the three main talent's values:
-        rescue_points = (talent1 / 10) + (talent2 / 10) + (talent3 / 10)
+        Method to calculate the rescue points for each talent.
+        Calculation is based on the talent's values:
+        rescue_points = round(talent value / 10)
         """
-        self.rescue_points = round(self.talent_act / 10) + \
-                             round(self.talent_knowledge / 10) + \
-                             round(self.talent_social / 10)
+        self.rescue_points_act = round(self.talent_act / 10)
+        self.rescue_points_knowledge = round(self.talent_knowledge / 10)
+        self.rescue_points_social = round(self.talent_social / 10)
         self.save()
 
 
@@ -144,22 +155,31 @@ class Skill(models.Model):
     value = SkillValueField(
         validators=[MinValueValidator(1), MaxValueValidator(100)]
     )
-    # TODO Probably better to add an own field for markup and refactor calculate_talents and add_talent_markup
+    include_talent_markup = models.BooleanField(default=True)
+    gross_value = SkillValueField(
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        default=0,
+        editable=False
+    )
 
     def __str__(self):
         return self.name
 
     def add_talent_markup(self, markup):
         """
-        Method to add the talent bonus markup for a skill.
+        Method to add the talent bonus markup for a skill (to gross_value).
         Called by the Character model's calculate_talents method.
         Returns a diff in case the markup exceeds the skill value limit of 100.
         """
-        self.value += markup
+        # only add markup if desired
+        if self.include_talent_markup:
+            self.gross_value = markup + self.value
+        else:
+            self.gross_value = self.value
         diff = 0
-        if self.value > 100:
-            diff = self.value - 100
-            self.value = 100
+        if self.gross_value > 100:
+            diff = self.gross_value - 100
+            self.gross_value = 100
         self.save()
         return diff
 
