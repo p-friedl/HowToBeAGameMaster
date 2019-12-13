@@ -9,6 +9,6 @@ CharacterForm = modelform_factory(Character,
 
 SkillFormSet = inlineformset_factory(Character,
                                      Skill,
-                                     fields=('talent', 'name', 'value'),
+                                     fields=('talent', 'name', 'value', 'include_talent_markup'),
                                      extra=1,
                                      max_num=80)
